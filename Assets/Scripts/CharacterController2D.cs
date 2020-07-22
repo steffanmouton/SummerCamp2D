@@ -14,7 +14,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private Transform m_CeilingCheck;
     [SerializeField] private Collider2D m_CrouchDisableCollider;
 
-    const float k_GroundedRadius = .2f;
+    const float k_GroundedRadius = .01f;
     private bool m_Grounded;
     const float k_CeilingRadius = .2f;
 
@@ -48,6 +48,8 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
+
+
     private void FixedUpdate()
     {
         bool wasGrounded = m_Grounded;
@@ -61,6 +63,7 @@ public class CharacterController2D : MonoBehaviour
                 m_Grounded = true;
                 if (!wasGrounded)
                 {
+                    Debug.Log("Collided with object: " + colliders[i]);
                     OnLandEvent.Invoke();
                 }
             }
